@@ -1,0 +1,6 @@
+@job_tracker_backend_HostAddress = http://localhost:5208
+
+GET {{job_tracker_backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
