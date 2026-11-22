@@ -1,4 +1,7 @@
 
+using job_tracker_backend.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace job_tracker_backend
 {
     public class Program
@@ -14,7 +17,14 @@ namespace job_tracker_backend
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            var app = builder.Build();
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+	        options.UseSqlServer(
+                builder.Configuration.
+                GetConnectionString("DefaultConnection")
+                )
+            );
+
+			var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
